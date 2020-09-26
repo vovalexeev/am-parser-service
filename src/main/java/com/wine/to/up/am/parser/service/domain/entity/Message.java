@@ -1,4 +1,4 @@
-package com.wine.to.up.am.service.domain.entity;
+package com.wine.to.up.am.parser.service.domain.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

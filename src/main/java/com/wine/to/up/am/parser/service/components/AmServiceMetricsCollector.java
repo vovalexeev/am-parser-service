@@ -1,5 +1,4 @@
-//TODO create-service: move classes to correct package. F.e. for order-service all classes should be in "com.wine.to.up.order.service.*"
-package com.wine.to.up.am.service.components;
+package com.wine.to.up.am.parser.service.components;
 
 import com.wine.to.up.commonlib.metrics.CommonMetricsCollector;
 import org.springframework.stereotype.Component;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Component;
  * Prometheus' metrics exposed at /metrics-prometheus
  *
  */
-//TODO create-service: rename
+
 @Component
 public class AmServiceMetricsCollector extends CommonMetricsCollector {
 }

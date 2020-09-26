@@ -1,4 +1,4 @@
-package com.wine.to.up.am.service;
+package com.wine.to.up.am.parser.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.wine.to.up.am.service.configuration;
+package com.wine.to.up.am.parser.service.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.modelmapper.ModelMapper;
