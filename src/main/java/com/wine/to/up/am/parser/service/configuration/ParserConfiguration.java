@@ -17,12 +17,12 @@ public class ParserConfiguration {
     private String userAgent;
 
     @Bean
-    Client client() {
+    public Client client() {
         return new Client(baseUrl, userAgent);
     }
 
     @Bean
-    ParseService parseService(Client client) {
+    public ParseService parseService(Client client) {
         return new ParseService(client);
     }
 }
