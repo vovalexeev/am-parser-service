@@ -1,25 +1,15 @@
-package com.wine.to.up.am.parser.service.logging;
+package com.wine.to.up.am.parser.service.logging
 
-import com.wine.to.up.commonlib.logging.NotableEvent;
+import com.wine.to.up.commonlib.logging.NotableEvent
 
-public enum AmServiceNotableEvents implements NotableEvent {
-
+enum class AmServiceNotableEvents(private val template: String) : NotableEvent {
     SOME_DEMO_EVENT("Something happened");
 
-    private final String template;
-
-    AmServiceNotableEvents(String template) {
-        this.template = template;
+    override fun getTemplate(): String {
+        return template
     }
 
-    public String getTemplate() {
-        return template;
+    override fun getName(): String {
+        return name
     }
-
-    @Override
-    public String getName() {
-        return name();
-    }
-
-
 }

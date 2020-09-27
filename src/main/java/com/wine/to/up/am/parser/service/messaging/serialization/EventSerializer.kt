@@ -1,17 +1,16 @@
-package com.wine.to.up.am.parser.service.messaging.serialization;
+package com.wine.to.up.am.parser.service.messaging.serialization
 
-import com.wine.to.up.demo.service.api.message.KafkaMessageSentEventOuterClass.KafkaMessageSentEvent;
-import org.apache.kafka.common.serialization.Serializer;
+import com.wine.to.up.demo.service.api.message.KafkaMessageSentEventOuterClass.KafkaMessageSentEvent
+import org.apache.kafka.common.serialization.Serializer
 
 /**
- * Serializer for {@link KafkaMessageSentEvent}
+ * Serializer for [KafkaMessageSentEvent]
  */
-public class EventSerializer implements Serializer<KafkaMessageSentEvent> {
+class EventSerializer : Serializer<KafkaMessageSentEvent> {
     /**
      * {@inheritDoc}
      */
-    @Override
-    public byte[] serialize(String topic, KafkaMessageSentEvent data) {
-        return data.toByteArray();
+    override fun serialize(topic: String, data: KafkaMessageSentEvent): ByteArray {
+        return data.toByteArray()
     }
 }

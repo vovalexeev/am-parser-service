@@ -1,14 +1,12 @@
-package com.wine.to.up.am.parser.service.controller;
+package com.wine.to.up.am.parser.service.controller
 
-import com.wine.to.up.am.parser.service.repository.MessageRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import com.wine.to.up.am.parser.service.repository.MessageRepository
+import lombok.RequiredArgsConstructor
+import lombok.extern.slf4j.Slf4j
+import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
 /**
  * REST controller of the service
@@ -18,11 +16,9 @@ import java.util.List;
 @RequestMapping("/message")
 @Validated
 @Slf4j
-public class MessageController {
-    public final MessageRepository messageRepository;
+class MessageController(
+        val messageRepository: MessageRepository) {
 
     @GetMapping
-    public List<String> getSentMessages() {
-        return messageRepository.findDistinctContent();
-    }
+    fun getSentMessages(): List<String?>? = messageRepository.findDistinctContent()
 }

@@ -1,26 +1,23 @@
-package com.wine.to.up.am.parser.service.configuration;
+package com.wine.to.up.am.parser.service.configuration
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.modelmapper.ModelMapper;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.modelmapper.ModelMapper
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 
 @Configuration
-public class GeneralPurposesBeansConfig {
-
+class GeneralPurposesBeansConfig {
     /**
      * Model mapper bean
      */
-    @Bean
-    public ModelMapper getModelMapper() {
-        return new ModelMapper();
-    }
+    @get:Bean
+    val modelMapper: ModelMapper
+        get() = ModelMapper()
 
     /**
      * Object mapper bean
      */
-    @Bean
-    public ObjectMapper getObjectMapper() {
-        return new ObjectMapper();
-    }
+    @get:Bean
+    val objectMapper: ObjectMapper
+        get() = ObjectMapper()
 }

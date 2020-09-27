@@ -1,25 +1,25 @@
-package com.wine.to.up.am.parser.service.messaging.serialization;
+package com.wine.to.up.am.parser.service.messaging.serialization
 
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.wine.to.up.demo.service.api.message.KafkaMessageSentEventOuterClass.KafkaMessageSentEvent;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.common.serialization.Deserializer;
+import com.google.protobuf.InvalidProtocolBufferException
+import com.wine.to.up.demo.service.api.message.KafkaMessageSentEventOuterClass.KafkaMessageSentEvent
+import lombok.extern.slf4j.Slf4j
+import org.apache.kafka.common.requests.DeleteAclsResponse.log
+import org.apache.kafka.common.serialization.Deserializer
 
 /**
- * Deserializer for {@link KafkaMessageSentEvent}
+ * Deserializer for [KafkaMessageSentEvent]
  */
 @Slf4j
-public class EventDeserializer implements Deserializer<KafkaMessageSentEvent> {
+class EventDeserializer : Deserializer<KafkaMessageSentEvent?> {
     /**
      * {@inheritDoc}
      */
-    @Override
-    public KafkaMessageSentEvent deserialize(String topic, byte[] bytes) {
-        try {
-            return KafkaMessageSentEvent.parseFrom(bytes);
-        } catch (InvalidProtocolBufferException e) {
-            log.error("Failed to deserialize message from topic: {}. {}", topic, e);
-            return null;
+    override fun deserialize(topic: String, bytes: ByteArray): KafkaMessageSentEvent? {
+        return try {
+            KafkaMessageSentEvent.parseFrom(bytes)
+        } catch (e: InvalidProtocolBufferException) {
+            log.error("Failed to deserialize message from topic: {}. {}", topic, e)
+            null
         }
     }
 }
