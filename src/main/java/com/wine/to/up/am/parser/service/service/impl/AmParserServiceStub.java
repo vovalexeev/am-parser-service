@@ -18,12 +18,11 @@ import java.util.List;
 @Component
 public class AmParserServiceStub implements AmParserService {
 
-    @Qualifier("amClientStub")
     private AmClient amClient;
 
     private final Catalog catalog;
 
-    public AmParserServiceStub(AmClient amClient) {
+    public AmParserServiceStub(@Qualifier("amClientStub")AmClient amClient) {
         this.amClient = amClient;
         Document document = this.amClient.getMainPage();
         catalog = getCatalog(document);
