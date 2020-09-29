@@ -4,6 +4,7 @@ import com.wine.to.up.am.parser.service.service.AmClient;
 import com.wine.to.up.am.parser.service.service.AmParserService;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.List;
 public class AmClientStub implements AmClient {
 
     @Autowired
+    @Qualifier("amParserServiceStub")
     private AmParserService amParserService;
 
     @Override
