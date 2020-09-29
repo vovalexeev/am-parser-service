@@ -9,32 +9,37 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Job для периодического обновления данных о винах
+ * @author Филимонов Олег
+ */
+
 @Component
-public class ScheduledUpdater {
+public class ActualizeWineJob {
 
-    private Parser parser;
+    private final Parser parser;
 
-    WineRepository wineRepository;
+    private WineRepository wineRepository;
 
-    public ScheduledUpdater(Parser parser) {
+    public ActualizeWineJob(Parser parser) {
         this.parser = Objects.requireNonNull(parser, "Can't get Parser");
     }
 
-    @Scheduled(cron = "0 0 1 * * MON")
+    /**
+     * Каждую неделю обновляет список вин
+     */
+    @Scheduled(cron = "${job.cron.actualize.wine}")
     public void updateWineInfo() {
         List<Wine> newWineInfo = parser.getWines();
         List<Wine> oldWineInfo = wineRepository.findAll();
-        for(Wine newWine: newWineInfo) {
-            boolean wineIsInDB = false;
-            for(Wine oldWine: oldWineInfo) {
-                if(newWine.equals(oldWine)) {
-                    wineIsInDB = true;
-                    if(!newWine.equals(oldWine)) {
-                        wineRepository.save(newWine);
-                    }
+        for (Wine newWine : newWineInfo) {
+            Wine sameWine = null;
+            for (Wine oldWine : oldWineInfo) {
+                if (newWine.getName().equals(oldWine.getName())) {
+                    sameWine = oldWine;
                 }
             }
-            if(!wineIsInDB) {
+            if (sameWine != null && !sameWine.equals(newWine)) {
                 wineRepository.save(newWine);
             }
         }
