@@ -18,7 +18,7 @@ public class AmParserServiceImpl implements AmParserService {
     public AmParserServiceImpl(@Qualifier("amClientStub")AmClient amClient) {
         this.amClient = amClient;
         Document document = this.amClient.getMainPage();
-        catalog = new Catalog();
+        catalog = new Catalog(document);
     }
 
     @Override
