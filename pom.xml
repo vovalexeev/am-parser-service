@@ -71,13 +71,6 @@
             <version>4.9</version>
         </dependency>
 
-        <!--library for parsing sites-->
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>1.13.1</version>
-        </dependency>
-
         <!-- Required: Swagger -->
         <dependency>
             <groupId>io.springfox</groupId>
