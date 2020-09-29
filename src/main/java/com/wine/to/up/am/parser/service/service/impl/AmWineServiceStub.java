@@ -1,7 +1,7 @@
 package com.wine.to.up.am.parser.service.service.impl;
 
 import com.wine.to.up.am.parser.service.model.dto.WineDto;
-import com.wine.to.up.am.parser.service.model.entity.Wine;
+import com.wine.to.up.am.parser.service.domain.entity.Wine;
 import com.wine.to.up.am.parser.service.repository.WineRepository;
 import com.wine.to.up.am.parser.service.service.AmClient;
 import com.wine.to.up.am.parser.service.service.AmParserService;
@@ -10,7 +10,6 @@ import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.lang.annotation.Documented;
 import java.util.ArrayList;
 import java.util.List;
 

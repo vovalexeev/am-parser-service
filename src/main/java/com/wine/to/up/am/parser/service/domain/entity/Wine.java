@@ -1,4 +1,4 @@
-package com.wine.to.up.am.parser.service.model.entity;
+package com.wine.to.up.am.parser.service.domain.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
