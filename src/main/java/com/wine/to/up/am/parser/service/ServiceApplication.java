@@ -13,6 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @SpringBootApplication
@@ -20,13 +21,8 @@ import java.util.List;
 @EnableSwagger2
 public class ServiceApplication {
 
-    public static void main(String[] args) throws IOException {
-        ConfigurableApplicationContext context = SpringApplication.run(ServiceApplication.class, args);
-        File file = new File("/Users/happyline/am-parser-service/src/main/resources", "docum.html");
-        Document document = Jsoup.parse(file, null);
-
-        List<WineDto> wineDtos = context.getBean(AmParserServiceImpl.class).parsePage(document);
-        System.out.println(wineDtos);
+    public static void main(String[] args) {
+        SpringApplication.run(ServiceApplication.class, args);
     }
 
 }

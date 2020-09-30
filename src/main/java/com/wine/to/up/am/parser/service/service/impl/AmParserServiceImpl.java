@@ -1,6 +1,8 @@
 package com.wine.to.up.am.parser.service.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wine.to.up.am.parser.service.domain.entity.Wine;
@@ -32,20 +34,23 @@ public class AmParserServiceImpl implements AmParserService {
 
     private final Catalog catalog;
 
-    public AmParserServiceImpl(@Qualifier("amClientStub") AmClient amClient) throws IOException {
+    private static final ObjectMapper mapper = new ObjectMapper();
+
+    public AmParserServiceImpl(@Qualifier("amClientStub") AmClient amClient) {
         this.amClient = amClient;
         //File file = new File("/Users/happyline/am-parser-service/src/main/resources", "docum.html");
         Document document = this.amClient.getMainPage();
-        catalog = new Catalog(document);
+        catalog = new Catalog();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     @Override
     public List<WineDto> parsePage(Document document) {
-        Elements elements = document.getAllElements();
+        Elements elements = document.getElementsByTag("script");
         String jsonStr = "";
         for (Element element : elements) {
             if (element.data().contains("window.products")) {
-                Pattern pattern = Pattern.compile(".*window\\.products = (\\{.*});");
+                Pattern pattern = Pattern.compile(".*window\\.products\\s*=\\s*(\\[.*]);");
                 Matcher matcher = pattern.matcher(element.data());
                 if (matcher.find()) {
                     jsonStr = matcher.group(1);
@@ -55,8 +60,10 @@ public class AmParserServiceImpl implements AmParserService {
                 break;
             }
         }
+        jsonStr = jsonStr.replaceAll("'", "\"");
         try {
-            return Arrays.asList(new ObjectMapper().readValue(jsonStr, WineDto[].class));
+            return mapper.readValue(jsonStr, new TypeReference<>() {
+            });
         } catch (JsonProcessingException ex) {
             log.error("Can't parse document", ex);
             return new ArrayList<>();

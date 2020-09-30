@@ -4,7 +4,7 @@ import org.jsoup.nodes.Document;
 
 public class Catalog {
 
-    public Catalog(Document document) {
+    public Catalog() {
 
     }
 }
