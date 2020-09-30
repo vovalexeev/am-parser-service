@@ -18,7 +18,7 @@ import java.util.List;
 @Component
 public class AmParserServiceStub implements AmParserService {
 
-    private AmClient amClient;
+    private final AmClient amClient;
 
     private final Catalog catalog;
 

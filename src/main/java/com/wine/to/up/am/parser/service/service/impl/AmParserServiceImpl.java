@@ -35,7 +35,7 @@ public class AmParserServiceImpl implements AmParserService {
 
     private static final Pattern perPageCountPattern = Pattern.compile(".*window\\.productsPerServerPage\\s*=\\s*(\\d*);");
 
-    public AmParserServiceImpl(@Qualifier("amClientStub") AmClient amClient) {
+    public AmParserServiceImpl(@Qualifier("jsoupAmClientImpl") AmClient amClient) {
         this.amClient = amClient;
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
@@ -52,6 +52,7 @@ public class AmParserServiceImpl implements AmParserService {
         }
         try {
             jsonStr = jsonStr != null ? jsonStr.replaceAll("'", "\"") : "";
+            jsonStr = jsonStr.replaceAll("\\s", " ");
             return mapper.readValue(jsonStr, new TypeReference<>() {});
         } catch (JsonProcessingException e) {
             log.error("Can't parse document", e);
