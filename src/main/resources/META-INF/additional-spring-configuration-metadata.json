@@ -1,0 +1,18 @@
+{
+  "properties": [
+    {
+      "name": "am.site.base-url",
+      "type": "java.lang.String",
+      "description": "AM site base URL."
+    },
+    {
+      "name": "am.site.user-agent",
+      "type": "java.lang.String",
+      "description": "Jsoup user agent"
+    },
+    {
+      "name": "am.site.referrer",
+      "type": "java.lang.String",
+      "description": "Jsoup referrer."
+    }
+  ] }

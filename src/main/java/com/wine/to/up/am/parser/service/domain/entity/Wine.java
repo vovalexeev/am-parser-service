@@ -1,5 +1,7 @@
 package com.wine.to.up.am.parser.service.domain.entity;
 
+import com.wine.to.up.am.parser.service.model.dto.WineDto;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

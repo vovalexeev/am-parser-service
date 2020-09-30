@@ -31,7 +31,7 @@ public class AmParserServiceStub implements AmParserService {
     @Override
     public List<WineDto> parsePage(Document document) {
         List<AmWine> wines = new ArrayList<>();
-        List<WineDto> wineDtos = new ArrayList<>();
+        List<WineDto> wineDtos = new ArrayList<>() {{ add(new WineDto()); add(new WineDto()); add(new WineDto()); add(new WineDto()); }};
         /*
             Этот кусок кода переводит с помощью каталога информацию
          */

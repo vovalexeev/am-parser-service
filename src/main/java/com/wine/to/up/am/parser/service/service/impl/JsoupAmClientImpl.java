@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.print.Doc;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author : skorz
+ * @author : SSyrova
  * @since : 29.09.2020, вт
  **/
 @Component
@@ -27,29 +27,29 @@ public class JsoupAmClientImpl implements AmClient {
     @Value(value = "${am.site.user-agent}")
     private String userAgent;
 
-    @Value(value = "${am.site.refferer}")
-    private String refferer;
-
-    @Autowired
-    private AmParserService amParserService;
+    @Value(value = "${am.site.referrer}")
+    private String referrer;
 
     @Override
-    public List<Document> getAllWinePages() {
-//        Long pagesAmount = amParserService.getCatalogPagesAmount()
-        return null;
+    public Document getPage(Long page) {
+        return getPage(baseUrl + "?page=" + page);
+    }
+
+    private Document getPage(String url) {
+        try {
+            return Jsoup
+                    .connect(url)
+                    .userAgent(userAgent)
+                    .referrer(referrer)
+                    .get();
+        } catch (IOException e) {
+            log.error("Cannot get document by '{}' url with exception: {}", url, e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public Document getMainPage() {
-        try {
-            return Jsoup
-                    .connect(baseUrl)
-                    .userAgent(userAgent)
-                    .referrer(refferer)
-                    .get();
-        } catch (IOException e) {
-            log.error("Cannot get document by '{}' url", baseUrl);
-            return null;
-        }
+        return getPage(baseUrl);
     }
 }

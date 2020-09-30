@@ -11,10 +11,10 @@ import java.util.List;
 public interface AmClient {
 
     /**
-     * Получение всех винных страниц
-     * @return винные страницы
+     * Получение страницы каталога
+     * @return страницу каталога
      */
-    List<Document> getAllWinePages();
+    Document getPage(Long page);
 
     /**
      * Получение главной страницы каталога.
