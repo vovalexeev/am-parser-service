@@ -24,15 +24,8 @@ public class AmClientStub implements AmClient {
     private AmParserService amParserService;
 
     @Override
-    public List<Document> getAllWinePages() {
-        Long pagesAmount = amParserService.getCatalogPagesAmount();
-        List<Document> list = new ArrayList<>();
-        for (long i = 1; i <= pagesAmount; i++) {
-            /*
-            Получение всех страниц
-             */
-        }
-        return list;
+    public Document getPage(Long page) {
+        return new Document("https://amwine.ru/catalog/vino/");
     }
 
     @Override
