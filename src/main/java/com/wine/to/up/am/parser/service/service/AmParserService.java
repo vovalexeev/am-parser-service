@@ -20,8 +20,7 @@ public interface AmParserService {
 
     /**
      * Получение количества страниц каталога
-     * @param document главная страница каталога
      * @return количество страниц
      */
-    Long getCatalogPagesAmount(Document document);
+    Long getCatalogPagesAmount();
 }

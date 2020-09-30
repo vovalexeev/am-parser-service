@@ -39,7 +39,7 @@ public class AmParserServiceStub implements AmParserService {
     }
 
     @Override
-    public Long getCatalogPagesAmount(Document document) {
+    public Long getCatalogPagesAmount() {
         return 457L;
     }
 

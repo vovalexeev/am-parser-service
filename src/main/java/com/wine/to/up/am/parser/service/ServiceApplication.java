@@ -1,6 +1,7 @@
 package com.wine.to.up.am.parser.service;
 
 import com.wine.to.up.am.parser.service.model.dto.WineDto;
+import com.wine.to.up.am.parser.service.service.AmParserService;
 import com.wine.to.up.am.parser.service.service.impl.AmClientStub;
 import com.wine.to.up.am.parser.service.service.impl.AmParserServiceImpl;
 import org.jsoup.Jsoup;
@@ -22,7 +23,10 @@ import java.util.List;
 public class ServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ServiceApplication.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(ServiceApplication.class, args);
+
+        System.out.println(context.getBean(AmParserServiceImpl.class).getCatalogPagesAmount());
+        System.out.println(context.getBean(AmParserServiceImpl.class).parsePage(context.getBean(AmClientStub.class).getMainPage()).size());
     }
 
 }
