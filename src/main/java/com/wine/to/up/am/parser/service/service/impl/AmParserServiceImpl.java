@@ -17,6 +17,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -72,6 +73,35 @@ public class AmParserServiceImpl implements AmParserService {
 
     @Override
     public Long getCatalogPagesAmount(Document document) {
-        return null;
+        Elements elements = document.getElementsByTag("script");
+        String totalCount = "";
+        String perPageCount = "";
+        for (Element element : elements) {
+            if (element.data().contains("window.productsTotalCount")) {
+                Pattern totalCountPattern = Pattern.compile(".*window\\.productsTotalCount\\s*=\\s*(\\d*);");
+                Matcher totalCountMatcher = totalCountPattern.matcher(element.data());
+                if (totalCountMatcher.find()) {
+                    totalCount = totalCountMatcher.group(1);
+                } else {
+                    log.error("Can't find totalCount");
+                }
+                Pattern perPageCountPattern = Pattern.compile(".*window\\.productsPerServerPage\\s*=\\s*(\\d*);");
+                Matcher perPageCountMatcher = perPageCountPattern.matcher(element.data());
+                if (perPageCountMatcher.find()) {
+                    perPageCount = totalCountMatcher.group(1);
+                } else {
+                    log.error("Can't find perPageCount");
+                }
+            }
+        }
+        if (StringUtils.hasText(totalCount) && StringUtils.hasText(perPageCount)) {
+            Long longTotalCount = Long.getLong(totalCount);
+            Long longPerPageCount = Long.getLong(perPageCount);
+            return (longTotalCount % longPerPageCount == 0)
+                    ? (longTotalCount / longPerPageCount)
+                    : (longTotalCount / longPerPageCount) + 1;
+        } else {
+            return null;
+        }
     }
 }
