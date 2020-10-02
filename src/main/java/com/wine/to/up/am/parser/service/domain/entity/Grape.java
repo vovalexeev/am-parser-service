@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "grapes")
@@ -17,7 +14,10 @@ import javax.persistence.Table;
 public class Grape {
     @Id
     @GeneratedValue
+    @Column(name = "grape_id")
     private long grapeID;
+    @Column(name = "import_id")
+    private long importID;
     private String grapeName;
 
     public Grape(String grapeName) {

@@ -17,6 +17,8 @@ public class Wine {
     @GeneratedValue
     @Column(name = "wine_id")
     private long wineID;
+    @Column(name = "import_id")
+    private long importID;
     private byte[] picture;
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "brand_id")
@@ -26,10 +28,12 @@ public class Wine {
     private Country country;
     private double volume;
     private double strength;
-    @Column(name = "color_enum")
-    private Colors colorEnum;
-    @Column(name = "sugar_enum")
-    private Sugar sugarEnum;
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "color_id")
+    private Color color;
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "sugar_id")
+    private Sugar sugar;
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "wine_grapes_id")
     private WineGrapesInfo wineGrapesInfo;
@@ -37,15 +41,15 @@ public class Wine {
     private Date dateBottling;
     private double price;
 
-    public Wine(byte[] picture, Brand brand, Country country, double volume, double strength, Colors colorEnum,
-                Sugar sugarEnum, WineGrapesInfo wineGrapesInfo, Date dateBottling, double price) {
+    public Wine(byte[] picture, Brand brand, Country country, double volume, double strength, Color color,
+                Sugar sugar, WineGrapesInfo wineGrapesInfo, Date dateBottling, double price) {
         this.picture = picture;
         this.brand = brand;
         this.country = country;
         this.volume = volume;
         this.strength = strength;
-        this.colorEnum = colorEnum;
-        this.sugarEnum = sugarEnum;
+        this.color = color;
+        this.sugar = sugar;
         this.wineGrapesInfo = wineGrapesInfo;
         this.dateBottling = dateBottling;
         this.price = price;

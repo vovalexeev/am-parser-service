@@ -16,10 +16,13 @@ public class Country {
     @GeneratedValue
     @Column(name = "country_id")
     private long countryID;
+    @Column(name = "import_id")
+    private long importID;
     @Column(name = "country_name")
     private String countryName;
 
-    public Country(String countryName) {
+    public Country(long importID, String countryName) {
+        this.importID = importID;
         this.countryName = countryName;
     }
 }

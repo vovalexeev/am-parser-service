@@ -9,8 +9,8 @@ import java.util.List;
 public interface WineRepository extends CrudRepository<Wine, Long> {
     List<Wine> findAllByBrand(Brand brand);
     List<Wine> findAllByCountry(Country country);
-    List<Wine> findAllByColorEnum(Colors color);
-    List<Wine> findAllBySugarEnum(Sugar sugar);
+    List<Wine> findAllByColor(Color color);
+    List<Wine> findAllBySugar(Sugar sugar);
     List<Wine> findAllByStrengthAfter(double strength);
     List<Wine> findAllByStrengthBefore(double strength);
     List<Wine> findAllByDateBottlingAfter(Date date);
