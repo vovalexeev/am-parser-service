@@ -1,10 +1,13 @@
 package com.wine.to.up.am.parser.service.controller;
 
+/*
 import com.google.protobuf.ByteString;
 import com.wine.to.up.commonlib.messaging.KafkaMessageSender;
 import com.wine.to.up.demo.service.api.dto.DemoServiceMessage;
 import com.wine.to.up.demo.service.api.message.KafkaMessageHeaderOuterClass;
 import com.wine.to.up.demo.service.api.message.KafkaMessageSentEventOuterClass.KafkaMessageSentEvent;
+*/
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * REST controller of the service
  */
+/*
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/kafka")
@@ -36,6 +40,7 @@ public class KafkaController {
     /**
      * Service for sending messages
      */
+    /*
     private KafkaMessageSender<KafkaMessageSentEvent> kafkaSendMessageService;
 
     private final ExecutorService executorService = Executors.newFixedThreadPool(3);
@@ -50,6 +55,7 @@ public class KafkaController {
      * Sends messages into the topic "test".
      * In fact now this service listen to that topic too. That means that it causes sending and reading messages
      */
+    /*
     @PostMapping(value = "/send")
     public void sendMessage(@RequestBody String message) {
         sendMessageWithHeaders(new DemoServiceMessage(Collections.emptyMap(), message));
@@ -59,6 +65,7 @@ public class KafkaController {
      * See {@link #sendMessage(String)}
      * Sends message with headers
      */
+    /*
     @PostMapping(value = "/send/headers")
     public void sendMessageWithHeaders(@RequestBody DemoServiceMessage message) {
         AtomicInteger counter = new AtomicInteger(0);
@@ -96,4 +103,4 @@ public class KafkaController {
 
         log.info("Sent: " + sent);
     }
-}
+}*/
