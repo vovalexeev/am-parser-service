@@ -29,7 +29,7 @@ public class AmWineServiceStub implements AmWineService {
 
     @Override
     public List<WineDto> getAllAmWines() {
-        long pages = amParserService.getCatalogPagesAmount();
+        long pages = amParserService.getCatalogPagesAmount(client.getMainPage());
         List<WineDto> list = new ArrayList<>();
         long page = 1;
         while (page <= pages) {

@@ -15,6 +15,7 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -25,8 +26,6 @@ import java.util.regex.PatternSyntaxException;
 @Slf4j
 public class AmParserServiceImpl implements AmParserService {
 
-    private AmClient amClient;
-
     private static final ObjectMapper mapper = new ObjectMapper();
 
     private static final Pattern productsPattern = Pattern.compile(".*window\\.products\\s*=\\s*(\\[.*]);");
@@ -35,8 +34,9 @@ public class AmParserServiceImpl implements AmParserService {
 
     private static final Pattern perPageCountPattern = Pattern.compile(".*window\\.productsPerServerPage\\s*=\\s*(\\d*);");
 
-    public AmParserServiceImpl(@Qualifier("jsoupAmClientImpl") AmClient amClient) {
-        this.amClient = amClient;
+    private static final Pattern catalogProps = Pattern.compile(".*window\\.catalogProps\\s*=\\s*(\\{.*});");
+
+    public AmParserServiceImpl() {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
@@ -61,8 +61,7 @@ public class AmParserServiceImpl implements AmParserService {
     }
 
     @Override
-    public Long getCatalogPagesAmount() {
-        Document document = amClient.getMainPage();
+    public Long getCatalogPagesAmount(Document document) {
         Elements elements = document.getElementsByTag("script");
         String totalCount = "";
         String perPageCount = "";
@@ -80,6 +79,26 @@ public class AmParserServiceImpl implements AmParserService {
         } catch (NumberFormatException e) {
             log.error("Cannot parse total object count or per page count: {}", e.getMessage());
             return -1L;
+        }
+    }
+
+    @Override
+    public Catalog parseCatalog(Document document) {
+        Elements elements = document.getElementsByTag("script");
+        String jsonStr = "";
+        for (Element element : elements) {
+            if (element.data().contains("window.catalogProps")) {
+                jsonStr = getValue(productsPattern, element);
+                break;
+            }
+        }
+        try {
+            jsonStr = jsonStr != null ? jsonStr.replaceAll("'", "\"") : "";
+            jsonStr = jsonStr.replaceAll("\\s", " ");
+            return mapper.readValue(jsonStr, Catalog.class);
+        } catch (JsonProcessingException e) {
+            log.error("Can't parse document", e);
+            return null;
         }
     }
 

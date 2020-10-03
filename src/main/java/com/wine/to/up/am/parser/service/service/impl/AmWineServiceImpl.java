@@ -44,7 +44,7 @@ public class AmWineServiceImpl implements AmWineService {
 
     @Override
     public List<WineDto> getAllAmWines() {
-        Long pages = amParserService.getCatalogPagesAmount();
+        Long pages = amParserService.getCatalogPagesAmount(client.getMainPage());
         List<WineDto> wineDtos = new CopyOnWriteArrayList<>();
         AtomicLong page = new AtomicLong(1);
 
