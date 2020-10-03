@@ -1,6 +1,5 @@
 package com.wine.to.up.am.parser.service.parse.service;
 
-import com.wine.to.up.am.parser.service.domain.entity.Wine;
 import com.wine.to.up.am.parser.service.parse.client.Client;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Document;
