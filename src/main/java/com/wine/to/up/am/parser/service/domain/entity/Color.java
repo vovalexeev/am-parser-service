@@ -24,4 +24,7 @@ public class Color {
 
     @Column(name = "import_id")
     private String importId;
+
+    @Column(name = "name")
+    private String name;
 }
