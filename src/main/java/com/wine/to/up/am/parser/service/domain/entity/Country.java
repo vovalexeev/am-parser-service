@@ -12,14 +12,19 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 public class Country {
+
     @Id
     @GeneratedValue
-    @Column(name = "country_id")
-    private long countryID;
-    @Column(name = "country_name")
-    private String countryName;
+    @Column(name = "id")
+    private long id;
 
-    public Country(String countryName) {
-        this.countryName = countryName;
+    @Column(name = "import_id")
+    private String importId;
+
+    @Column(name = "name")
+    private String name;
+
+    public Country(String name) {
+        this.name = name;
     }
 }

@@ -16,14 +16,18 @@ import javax.persistence.Table;
 @Getter
 @NoArgsConstructor
 public class Brand {
+
     @Id
     @GeneratedValue
-    @Column(name = "brand_id")
-    private long brandID;
-    @Column(name = "brand_name")
-    private String brandName;
+    @Column(name = "id")
+    private long id;
 
-    public Brand(String brandName) {
-        this.brandName = brandName;
+    @Column(name = "import_id")
+    private String importId;
+
+    private String name;
+
+    public Brand(String name) {
+        this.name = name;
     }
 }
