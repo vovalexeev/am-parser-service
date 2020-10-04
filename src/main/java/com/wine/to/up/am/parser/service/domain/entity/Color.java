@@ -27,4 +27,9 @@ public class Color {
 
     @Column(name = "name")
     private String name;
+
+    public Color(String importId, String name) {
+        this.importId = importId;
+        this.name = name;
+    }
 }

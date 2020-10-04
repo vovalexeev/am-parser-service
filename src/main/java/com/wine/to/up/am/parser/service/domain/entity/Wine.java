@@ -57,4 +57,26 @@ public class Wine {
     private List<Grape> grapes;
 
     private double price;
+
+    public Wine(String importId,
+                String pictureUrl,
+                Brand brand,
+                Country country,
+                double volume,
+                double strength,
+                Color color,
+                Sugar sugar,
+                List<Grape> grapes,
+                double price) {
+        this.importId = importId;
+        this.pictureUrl = pictureUrl;
+        this.brand = brand;
+        this.country = country;
+        this.volume = volume;
+        this.strength = strength;
+        this.color = color;
+        this.sugar = sugar;
+        this.grapes = grapes;
+        this.price = price;
+    }
 }

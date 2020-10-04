@@ -29,7 +29,8 @@ public class Grape {
 
     private String name;
 
-    public Grape(String name) {
+    public Grape(String importId, String name) {
+        this.importId = importId;
         this.name = name;
     }
 }

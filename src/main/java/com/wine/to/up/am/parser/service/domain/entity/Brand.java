@@ -22,7 +22,8 @@ public class Brand {
 
     private String name;
 
-    public Brand(String name) {
+    public Brand(String importId, String name) {
+        this.importId = importId;
         this.name = name;
     }
 }

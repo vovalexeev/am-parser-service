@@ -26,4 +26,9 @@ public class Sugar {
     private String importId;
 
     private String name;
+
+    public Sugar(String importId, String name) {
+        this.importId = importId;
+        this.name = name;
+    }
 }
