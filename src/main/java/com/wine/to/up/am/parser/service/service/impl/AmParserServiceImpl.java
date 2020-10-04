@@ -88,7 +88,7 @@ public class AmParserServiceImpl implements AmParserService {
         String jsonStr = "";
         for (Element element : elements) {
             if (element.data().contains("window.catalogProps")) {
-                jsonStr = getValue(productsPattern, element);
+                jsonStr = getValue(catalogProps, element);
                 break;
             }
         }
