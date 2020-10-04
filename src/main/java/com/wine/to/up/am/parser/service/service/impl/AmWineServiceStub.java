@@ -4,6 +4,7 @@ import com.wine.to.up.am.parser.service.model.dto.WineDto;
 import com.wine.to.up.am.parser.service.service.AmClient;
 import com.wine.to.up.am.parser.service.service.AmParserService;
 import com.wine.to.up.am.parser.service.service.AmWineService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ import java.util.List;
  * @since : 30.09.2020, ср
  **/
 @Component
+@Slf4j
 public class AmWineServiceStub implements AmWineService {
 
     @Autowired
@@ -39,4 +41,10 @@ public class AmWineServiceStub implements AmWineService {
         return list;
     }
 
+    @Override
+    public void updateWines(List<WineDto> wineDtos) {
+        log.info("updated {} wines", 1);
+        log.info("created {} wines", 1);
+        log.info("deleted {} wines", 1);
+    }
 }

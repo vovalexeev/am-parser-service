@@ -39,9 +39,6 @@ public class AmWineServiceImpl implements AmWineService {
     @Qualifier("amParserServiceImpl")
     private AmParserService amParserService;
 
-    @Autowired
-    private WineRepository wineRepository;
-
     @Override
     public List<WineDto> getAllAmWines() {
         Long pages = amParserService.getCatalogPagesAmount(client.getMainPage());
@@ -73,14 +70,8 @@ public class AmWineServiceImpl implements AmWineService {
         return wineDtos;
     }
 
-    public void saveWinesFromAm() {
-        List<WineDto> wineDtos = getAllAmWines();
-        for (WineDto wineDto : wineDtos) {
-            Wine wine = new Wine();
-            /*
-             wineDto -> wine
-             */
-            wineRepository.save(wine);
-        }
+    @Override
+    public void updateWines(List<WineDto> wineDtos) {
+
     }
 }
