@@ -11,6 +11,7 @@ import java.util.Date;
 
 /**
  * Job для периодического обновления данных о винах
+ *
  * @author Филимонов Олег
  */
 
@@ -20,9 +21,6 @@ public class ActualizeWineJob {
 
     @Autowired
     private AmService amService;
-
-    @Autowired
-    private WineRepository wineRepository;
 
     /**
      * Каждую неделю обновляет список вин
