@@ -9,9 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.List;
 
 @Entity
 @Table(name = "grapes")
@@ -27,6 +25,7 @@ public class Grape {
     @Column(name = "import_id")
     private String importId;
 
+    @Column(name = "name")
     private String name;
 
     public Grape(String importId, String name) {

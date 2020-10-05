@@ -6,21 +6,18 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wine.to.up.am.parser.service.model.dto.Catalog;
 import com.wine.to.up.am.parser.service.model.dto.WineDto;
-import com.wine.to.up.am.parser.service.service.AmClient;
 import com.wine.to.up.am.parser.service.service.AmParserService;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
 @Component
 @Slf4j
@@ -53,7 +50,8 @@ public class AmParserServiceImpl implements AmParserService {
         try {
             jsonStr = jsonStr != null ? jsonStr.replaceAll("'", "\"") : "";
             jsonStr = jsonStr.replaceAll("\\s", " ");
-            return mapper.readValue(jsonStr, new TypeReference<>() {});
+            return mapper.readValue(jsonStr, new TypeReference<>() {
+            });
         } catch (JsonProcessingException e) {
             log.error("Can't parse document", e);
             return new ArrayList<>();
@@ -70,6 +68,9 @@ public class AmParserServiceImpl implements AmParserService {
                 totalCount = getValue(totalCountPattern, element);
                 perPageCount = getValue(perPageCountPattern, element);
             }
+        }
+        if (!StringUtils.hasText(totalCount) || !StringUtils.hasText(perPageCount)) {
+            return -1L;
         }
         try {
             Long longTotalCount = Long.parseLong(totalCount);

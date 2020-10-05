@@ -14,6 +14,7 @@ public interface AmParserService {
 
     /**
      * Получение объектов вина из страницы каталога
+     *
      * @param document страница каталога
      * @return объект WineDto
      */
@@ -21,6 +22,7 @@ public interface AmParserService {
 
     /**
      * Получение количества страниц каталога
+     *
      * @return количество страниц
      */
     Long getCatalogPagesAmount(Document document);
