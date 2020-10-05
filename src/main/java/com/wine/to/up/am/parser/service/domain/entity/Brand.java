@@ -24,7 +24,7 @@ public class Brand {
 
     @Column(name = "import_id")
     private String importId;
-
+    @Column(name = "name")
     private String name;
 
     public Brand(String importId, String name) {
