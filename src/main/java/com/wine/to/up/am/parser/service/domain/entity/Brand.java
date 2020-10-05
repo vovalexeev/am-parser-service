@@ -1,0 +1,29 @@
+package com.wine.to.up.am.parser.service.domain.entity;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "brands")
+@Setter
+@Getter
+@NoArgsConstructor
+public class Brand {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(name = "import_id")
+    private String importId;
+
+    private String name;
+
+    public Brand(String importId, String name) {
+        this.importId = importId;
+        this.name = name;
+    }
+}
