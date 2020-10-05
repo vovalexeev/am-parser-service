@@ -1,7 +1,6 @@
-package com.wine.to.up.am.parser.service.scheduledupdate;
+package com.wine.to.up.am.parser.service.job;
 
 import com.wine.to.up.am.parser.service.service.AmService;
-import com.wine.to.up.am.parser.service.repository.WineRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -17,7 +16,7 @@ import java.util.Date;
 
 @Component
 @Slf4j
-public class ActualizeWineJob {
+public class UpdateRepositoryJob {
 
     @Autowired
     private AmService amService;
