@@ -24,7 +24,7 @@ public class UpdateRepositoryJob {
     /**
      * Каждую неделю обновляет список вин
      */
-    @Scheduled(cron = "${job.cron.actualize.wine}")
+    @Scheduled(cron = "${job.cron.update.repository}")
     public void runJob() {
         long startDate = new Date().getTime();
         log.info("start ActualizeWineJob run job method at " + startDate);
