@@ -1,6 +1,5 @@
 package com.wine.to.up.am.parser.service.service.impl;
 
-import com.wine.to.up.am.parser.service.domain.entity.Wine;
 import com.wine.to.up.am.parser.service.model.dto.Catalog;
 import com.wine.to.up.am.parser.service.model.dto.WineDto;
 import com.wine.to.up.am.parser.service.service.AmClient;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -26,11 +26,10 @@ public class AmParserServiceStub implements AmParserService {
 
     @Override
     public List<WineDto> parsePage(Document document) {
-        List<WineDto> wineDtos = new ArrayList<>() {{ add(new WineDto()); add(new WineDto()); add(new WineDto()); add(new WineDto()); }};
         /*
             Этот кусок кода переводит с помощью каталога информацию
          */
-        return wineDtos;
+        return Arrays.asList(new WineDto(), new WineDto(), new WineDto());
     }
 
     @Override

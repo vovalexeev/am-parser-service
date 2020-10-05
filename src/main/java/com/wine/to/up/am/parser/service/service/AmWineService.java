@@ -12,6 +12,7 @@ public interface AmWineService {
 
     /**
      * Получение всех объектов вина
+     *
      * @return все вина
      */
     List<WineDto> getAllAmWines();
@@ -20,7 +21,8 @@ public interface AmWineService {
      * Метод должен обновлять данные в базе данных или добавлять новые.
      * Сравнение сущностей производится по importId.
      * В лог должно выводится сколько сущностей обновилось, удалилось или создалось
-     * @param wineDtos
+     *
+     * @param wineDtos объекты вина из винного магазина
      */
     void updateWines(List<WineDto> wineDtos);
 }
