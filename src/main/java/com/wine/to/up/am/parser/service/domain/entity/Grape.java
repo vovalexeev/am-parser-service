@@ -27,6 +27,7 @@ public class Grape {
     @Column(name = "import_id")
     private String importId;
 
+    @Column(name = "name")
     private String name;
 
     public Grape(String importId, String name) {
