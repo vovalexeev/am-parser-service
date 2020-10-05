@@ -14,7 +14,8 @@ public interface AmCatalogService {
      * Метод должен обновлять данные в базе данных или добавлять новые.
      * Сравнение сущностей производится по importId.
      * В лог должно выводится сколько сущностей обновилось, удалилось или создалось
-     * @param catalog
+     *
+     * @param catalog винный каталог
      */
     void updateCatalog(Catalog catalog);
 }
