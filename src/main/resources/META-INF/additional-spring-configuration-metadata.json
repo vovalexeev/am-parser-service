@@ -14,5 +14,10 @@
       "name": "am.site.referrer",
       "type": "java.lang.String",
       "description": "Jsoup referrer."
+    },
+    {
+      "name": "spring.version.name",
+      "type": "java.lang.String",
+      "description": "Description for spring.version.name."
     }
   ] }
