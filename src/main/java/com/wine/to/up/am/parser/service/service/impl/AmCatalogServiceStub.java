@@ -3,6 +3,7 @@ package com.wine.to.up.am.parser.service.service.impl;
 import com.wine.to.up.am.parser.service.model.dto.Catalog;
 import com.wine.to.up.am.parser.service.service.AmCatalogService;
 import lombok.extern.slf4j.Slf4j;
+import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class AmCatalogServiceStub implements AmCatalogService {
 
     @Override
-    public Catalog getCatalog() {
+    public Catalog getCatalog(Document document) {
         return new Catalog();
     }
 

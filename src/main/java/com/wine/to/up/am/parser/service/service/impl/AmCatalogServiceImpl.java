@@ -35,15 +35,11 @@ public class AmCatalogServiceImpl implements AmCatalogService {
     @Autowired
     private SugarRepository sugarRepo;
     @Autowired
-    @Qualifier("jsoupAmClientImpl")
-    private AmClient client;
-    @Autowired
     @Qualifier("amParserServiceImpl")
     private AmParserService amParserService;
 
     @Override
-    public Catalog getCatalog() {
-        Document document = client.getMainPage();
+    public Catalog getCatalog(Document document) {
         return amParserService.parseCatalog(document);
     }
 
