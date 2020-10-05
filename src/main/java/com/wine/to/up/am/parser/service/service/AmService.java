@@ -15,5 +15,4 @@ public interface AmService {
      */
     void updateDatabase();
 
-    List<WineDto> getWine(Long page, Long perPage);
 }

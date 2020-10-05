@@ -40,9 +40,4 @@ public class AmServiceStub implements AmService {
         List<WineDto> wineDtos = amWineService.getAllAmWines();
         amWineService.updateWines(wineDtos);
     }
-
-    @Override
-    public List<WineDto> getWine(Long page, Long perPage) {
-        return Collections.emptyList();
-    }
 }
