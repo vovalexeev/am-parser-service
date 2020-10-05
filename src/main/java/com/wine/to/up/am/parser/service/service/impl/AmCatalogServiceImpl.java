@@ -49,9 +49,9 @@ public class AmCatalogServiceImpl implements AmCatalogService {
 
     @Override
     public void updateCatalog(Catalog catalog) {
-        Integer created = 0;
-        Integer updated = 0;
-        Integer deleted = 0;
+        int created = 0;
+        int updated = 0;
+        int deleted = 0;
         for (Catalog.CatalogProp prop : catalog.getBrands()) {
             Brand brand = brandRepo.findByImportId(prop.getImportId());
             if (brand == null) {
